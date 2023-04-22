@@ -1,0 +1,161 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student in Course</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
+	<style>
+        /* Custom CSS to hide the table initially */
+        .table-container {
+            
+            overflow-x: auto;
+            max-height: 500px; /* Set max height to prevent table from overflowing */
+        }
+        .table-container table {
+            width: 100%;
+        }
+        #tableHeading{
+        	
+        }
+        #newbtn{
+        	
+        	position: relative;
+        	right:0;
+        }
+        
+        
+    </style>
+</head>
+<body>
+	<div class="container">
+		<div class="panel panel-primary">
+			<button type="button" class="btn btn-primary" id="toggleBtn">Hide student list</button>
+				<div class="panel-heading" id="tableHeading">
+					<h2 class="text-center">Students in course ${cname}</h2>
+				</div>
+				<div class="panel-body">
+					<div class="table-container mt-3" id="myTable">
+					<table class="table table-bordered" id="listStudent">
+						<thead>
+							<tr>
+								<th>Student ID</th>
+								<th>Student Name</th>
+								<th>Class ID</th>
+								<th>Class name</th>
+								<th>Class year</th>
+								<th>Score</th>
+								<th></th>
+						
+							</tr>
+						</thead>
+						<tbody>
+							<c:if test="${not empty list}">
+								<c:forEach var="i" begin="0" end="${list.getSize() - 1}">
+									<c:set var="student" value="${list.getStudentJoin(i)}" />
+									<tr>
+										<td>${student.getStudentId()}</td>
+										<td>${student.getStudentName()}</td>
+										<td>${student.getClassId()}</td>
+										<td>${student.getClassName)}</td>
+										<td>${student.getClassYear()}</td>
+										<td>${student.getScore()}</td>
+										<td>
+											<form method="post" action="./removestudentfrom">
+												<input type="text" value="${student.getStudentId()}"
+													name="sid" style="display: none;" />
+												<input type="text" value="${year}"
+													name="cyear" style="display: none;" />
+												<input type="text" value="${id}"
+													name="cid" style="display: none;" />
+												<button class="btn btn-success"
+													onclick="confirmDelete(${student.getStudentId()})">Delete</button>
+											</form>
+										</td>
+										
+									</tr>
+								</c:forEach>
+							</c:if>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<a href="./addstudentinto" class="btn btn-primary mt-3 mb-3" id="newbtn">+ New Student</a>
+			<button class="btn btn-primary mt-3 mb-3" onclick = "sortByName()" id="sortbtn">Sort by name</button>
+		</div>
+	</div>
+</body>
+<script>
+        // JavaScript to handle toggle functionality
+        $(document).ready(function() {
+            $('#toggleBtn').click(function() {
+                $('#myTable').toggle(); // Toggle the display of the table
+                $('#tableHeading').toggle();
+                $('#newbtn').toggle();
+                if( document.getElementById("toggleBtn").innerText.valueOf() == new String("Show Student List").valueOf())
+                {
+                	document.getElementById("toggleBtn").innerText = "Hide student list"
+                }
+                else{
+                	document.getElementById("toggleBtn").innerText = "Show Student List"
+                }
+            });
+        });
+        
+        function confirmDelete(id) {
+        	  // Display a confirmation dialog box
+        	  const option = confirm("Are you sure to delete?");
+
+        	  // Check if the user clicked the "OK" button
+        	  if (option === true) {
+        	    // Submit the form programmatically
+        	    document.getElementById("myForm").submit();
+        	  } else {
+        	    // Stop the form submission
+        	    return false;
+        	  }
+        }
+        
+        function sortByName() {
+        	  // Get the table element
+        	  
+        	  const table = document.getElementById("listStudent");
+        	
+        	  // Get the table rows
+        	  const rows = table.rows;
+        	  console.log(rows);
+        	  // Convert the rows to an array for sorting
+        	  const rowsArray = Array.from(rows).slice(1);
+        	  console.log(1); // Add this line to check the value of rowsArray
+        	  // Sort the rows based on the name column
+        	  rowsArray.sort((a, b) => {
+        	    const nameA = a.cells[1].textContent;
+        	    const nameB = b.cells[1].textContent;
+        	    return nameA.localeCompare(nameB);
+        	  });
+
+        	  // Add the sorted rows back to the table
+        	  rowsArray.forEach(row => {
+        	    table.appendChild(row);
+        	  });
+        	}
+      
+    </script>
+</html>

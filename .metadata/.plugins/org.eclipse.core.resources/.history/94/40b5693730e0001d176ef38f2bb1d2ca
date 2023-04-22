@@ -1,0 +1,78 @@
+package com.model;
+
+import com.dao.CourseList;
+import com.dao.StudentList;
+
+public class StudentJoin {
+	private int id;
+	private String studentName = null;
+	private int cid;
+	private String cName = null;
+	private int cyear;
+	private float score;
+	
+	public StudentJoin() {
+		// TODO Auto-generated constructor stub
+	}
+	public StudentJoin(int sid, String sname, int clId, String cname, int clYear, float s)
+	{
+		id = sid;
+		studentName = sname;
+		cid = clId;
+		this.cName = cname;
+		cyear = clYear;
+		score = s;
+	}
+	
+	public StudentJoin(int sid, int cid2, int year, float score2) {
+		// TODO Auto-generated constructor stub
+		id = sid;
+		studentName = StudentList.getStudentName(sid);
+		cName = CourseList.getClassName(cid2, year);
+		cid = cid2;
+	
+		cyear = year;
+		score = score2;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public int getStudentId() {
+		return id;
+	}
+	public void setStudentId(int id) {
+		this.id = id;
+	}
+	public int getClassId() {
+		return cid;
+	}
+	public void setClassId(int cid) {
+		this.cid = cid;
+	}
+	public String getClassName() {
+		return cName;
+	}
+	public void setClassName(String cName) {
+		this.cName = cName;
+	}
+	public int getClassYear() {
+		return cyear;
+	}
+	public void setClassYear(int cyear) {
+		this.cyear = cyear;
+	}
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
+	}
+	
+	public String toString()
+	{
+		return this.id + " " + this.studentName + " " + this.cid + " " + this.cName + " " + this.cyear + " " + this.score;
+	}
+}

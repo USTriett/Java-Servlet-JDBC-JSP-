@@ -1,0 +1,12 @@
+package com.model;
+
+public class StudentScore {
+	private int id;
+	private float score;
+	
+	public StudentScore(int id) {
+		// TODO Auto-generated constructor stub
+		this.id = id;
+	}
+	
+}

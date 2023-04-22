@@ -1,0 +1,14 @@
+package com.dao;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+public class ScoreStat {
+	ArrayList<StudentScore> list;
+	int year;
+	
+	public ScoreStat(int year) {
+		// TODO Auto-generated constructor stub
+		ArrayList<int> idlist = StudentList.getAllId();
+	}
+}

@@ -1,0 +1,70 @@
+package com.Servlet;
+
+import java.io.IOException;
+import java.sql.Date;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Help.Helper;
+import com.dao.StudentList;
+import com.model.Student;
+
+/**
+ * Servlet implementation class AddStudentServlet
+ */
+@WebServlet("/AddStudent")
+public class AddStudentServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddStudentServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./WebContent/AddStudent.jsp");
+		requestDispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		StudentList list = new StudentList();
+		int id = list.getSize() + 1;
+		for(int i = 0; i < list.getSize(); i++)
+		{
+			if(list.getStudent(i).getStudentId() == id)
+			{
+				id = list.getStudent(i).getStudentId() + 1;
+			}
+		}
+		String name = request.getParameter("name");
+		int grade = Integer.valueOf(request.getParameter("grade"));
+		Date birthday = Date.valueOf(request.getParameter("birthday"));
+		String address = Helper.getUTF8String(request.getParameter("address")) ;
+		String notes = request.getParameter("notes");
+		
+		Student s = new Student(id, name, grade, birthday, address, notes);
+		if(list.addStudent(s))
+		{
+			response.sendRedirect("./ListStudent");
+			
+		}
+		
+	}
+
+}

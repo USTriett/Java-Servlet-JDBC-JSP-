@@ -1,0 +1,56 @@
+package com.model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.db.JDBCConnector;
+
+public class StudentsInCourse {
+	private
+	private Connection con = null;
+	
+	public StudentInCourse()
+	{
+		con = JDBCConnector.getJDBCConnection();
+	}
+	
+	public StudentInCourse(int cid, int cyear) {
+		// TODO Auto-generated constructor stub
+		con = JDBCConnector.getJDBCConnection();
+		
+		
+		
+		if(con != null)
+    	{
+    		try {
+    			String statement = "Select s.id, s.sName, c.id, c.cName, c.cyear, j.score\r\n"
+    					+ "From studentmanagement1.student s, studentmanagement1.joinclass j, studentmanagement1.course c\r\n"
+    					+ "Where s.id = j.studentid and c.id= 1 and c.id = j.classid and c.cyear= 2022";
+    			PreparedStatement s = con.prepareStatement(statement);
+    			s.setInt(1, cid);
+    			s.setInt(2, cyear);
+    			ResultSet set = s.executeQuery();
+    			
+    			String name = set.getNString(3);
+    			String notes = set.getNString(5);
+    			course = new Course(cid, cyear, name, notes);
+    			
+    			
+    			
+				System.out.println("Fetch success!");
+				con.close();  
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.err.println("Fetch Failed");
+			}
+    		
+    	}
+	}
+	
+	public 
+}

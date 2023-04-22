@@ -1,0 +1,64 @@
+package com.Servlet;
+
+import java.io.IOException;
+import java.sql.Date;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.Help.Helper;
+import com.dao.CourseList;
+import com.dao.StudentList;
+import com.model.Course;
+import com.model.Student;
+
+/**
+ * Servlet implementation class AddCourseServlet
+ */
+@WebServlet("/addcourse")
+public class AddCourseServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public AddCourseServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("./WebContent/AddStudent.jsp");
+		requestDispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		CourseList list = new CourseList();
+		int id = list.getSize() + 1;
+		String name = request.getParameter("name");
+		int year = Integer.valueOf(request.getParameter("year"));
+		
+		String notes = request.getParameter("notes");
+		
+		Course c = new Course(id, year, name, notes);
+		if(list.addCourse(c))
+		{
+			response.sendRedirect("./courses");
+			
+		}
+	}
+
+}

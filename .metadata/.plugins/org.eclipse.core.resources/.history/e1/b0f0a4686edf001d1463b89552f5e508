@@ -1,0 +1,33 @@
+package com.dao;
+
+import java.util.ArrayList;
+
+public class ScoreStat {
+	ArrayList<StudentScore> list;
+	int year;
+	
+	public ScoreStat(int year) {
+		// TODO Auto-generated constructor stub
+		this.year = year;
+		StudentList slist = new StudentList();
+		ArrayList<Integer> idlist = slist.getAllId();
+		list = new ArrayList<>();
+		for(int i:idlist)
+		{
+			list.add(new StudentScore(i, year));
+		}
+	}
+	
+	public int getSize() {
+		return list.size();
+	}
+	
+	public int getYear()
+	{
+		return this.year;
+	}
+	public StudentScore getStudentScore(int index)
+	{
+		return list.get(index);
+	}
+}

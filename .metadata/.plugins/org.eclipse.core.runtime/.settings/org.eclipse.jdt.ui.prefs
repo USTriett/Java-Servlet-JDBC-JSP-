@@ -1,0 +1,16 @@
+content_assist_autoactivation_delay=200
+content_assist_autoactivation_triggers_java=.$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+content_assist_disable_completion_trigger_chars=true
+content_assist_fill_method_arguments=false
+content_assist_insert_completion=false
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.module.StudentList"><rhs name\="com.module.StudentList"/></lhs><lhs name\="com.module.Student"><rhs name\="com.module.Student"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.constant.ConstantDesc"><rhs name\="java.lang.String"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.RandomAccess"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.sql.Date"/><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.ArrayList"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="com.model.User"><rhs name\="com.model.User"/></lhs><lhs name\="com.model.StudentList"><rhs name\="com.model.StudentList"/></lhs><lhs name\="java.util.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="java.sql.Date"><rhs name\="java.sql.Date"/></lhs><lhs name\="com.model.CourseList"><rhs name\="com.model.CourseList"/></lhs><lhs name\="com.model.Course"><rhs name\="com.model.Course"/></lhs><lhs name\="com.model.StudentJoin"><rhs name\="com.model.StudentJoin"/></lhs><lhs name\="com.dao.LectureList"><rhs name\="com.dao.LectureList"/></lhs><lhs name\="com.model.Lecture"><rhs name\="com.model.Lecture"/></lhs><lhs name\="com.dao.CourseList"><rhs name\="com.dao.CourseList"/></lhs><lhs name\="com.dao.StudentsInCourse"><rhs name\="com.dao.StudentsInCourse"/></lhs><lhs name\="com.dao.StudentList"><rhs name\="com.dao.StudentList"/></lhs><lhs name\="com.dao.StudentScore"><rhs name\="com.dao.StudentScore"/></lhs><lhs name\="com.dao.ScoreOfStudent"><rhs name\="com.dao.ScoreOfStudent"/></lhs></history>
+content_assist_number_of_computers=13
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=22
+sourceHoverBackgroundColor=44,49,53
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

@@ -1,0 +1,119 @@
+package com.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.db.JDBCConnector;
+import com.model.StudentJoin;
+
+public class StudentsInCourse {
+	private ArrayList<StudentJoin> sjList = null;
+	private Connection con = null;
+	
+	public StudentsInCourse()
+	{
+		con = JDBCConnector.getJDBCConnection();
+	}
+	
+	
+	public StudentsInCourse(int cid, int cyear) {
+		// TODO Auto-generated constructor stub
+		con = JDBCConnector.getJDBCConnection();
+		
+		
+		
+		if(con != null)
+    	{
+    		try {
+    			String statement = "Select s.id, s.sName, c.id, c.cName, c.cyear, j.score\r\n"
+    					+ "From studentmanagement1.student s, studentmanagement1.joinclass j, studentmanagement1.course c\r\n"
+    					+ "Where s.id = j.studentid and c.id= ? and c.id = j.classid and c.cyear= ?";
+    			PreparedStatement s = con.prepareStatement(statement);
+    			s.setInt(1, cid);
+    			s.setInt(2, cyear);
+    			ResultSet set = s.executeQuery();
+    			
+    			sjList = new ArrayList<>();
+    			while(set.next())
+    			{
+    				int sid = set.getInt(1);
+    				String sname = set.getNString(2);
+    				
+    				String cname = set.getNString(4);
+
+    				float score = set.getFloat(6);
+    				
+    				StudentJoin sj = new StudentJoin(sid, sname, cid, cname, cyear, score);
+    				sjList.add(sj);
+    				
+    			}
+    			
+    			
+    			
+				System.out.println("Fetch success!");
+				con.close();  
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.err.println("Fetch Failed");
+			}
+    		
+    	}
+	}
+	
+	public boolean addStudent(int sid, int cid, int year, float score) {
+		con = JDBCConnector.getJDBCConnection();
+
+
+
+		if(con != null)
+		{
+			try {
+				String excuteString = "insert into studentmanagement1.joinclass(studentid, classid, classyear, score)\r\n"
+						+ "values\r\n"
+						+ "(?, ?, ?, ?)";
+				PreparedStatement statement = con.prepareStatement(excuteString);
+				statement.setInt(1, sid);
+				statement.setInt(2, cid);
+				statement.setInt(3, year);
+				statement.setFloat(4, score);
+				System.out.println(excuteString);
+				statement.executeUpdate();
+				
+				StudentJoin sJoin = new StudentJoin(sid, cid, year, score);
+				
+				System.out.println("Fetch success!");
+				con.close(); 
+				return true;
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.err.println("Fetch Failed");
+			}
+
+		}
+	}
+	
+	public StudentJoin getStudentJoin(int index) {
+		return sjList.get(index);
+	}
+	
+	public boolean isEmpty() {
+		if(sjList.isEmpty())
+			return true;
+		return false;
+	}
+	
+	public int getSize()
+	{
+		return sjList.size();
+	}
+	
+
+}

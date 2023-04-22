@@ -1,0 +1,23 @@
+1681746838874	Encapsulate field 'studentName'
+1681746856943	Encapsulate field 'id'
+1681746872529	Encapsulate field 'cid'
+1681746885942	Encapsulate field 'cName'
+1681746902721	Encapsulate field 'cyear'
+1681746908043	Encapsulate field 'score'
+1681750097090	Rename type 'StudentInCourse'
+1681750124983	Rename type 'ListCourses'
+1681752337255	Encapsulate field 'cid'
+1681752356131	Encapsulate field 'cyear'
+1681752364813	Encapsulate field 'lname'
+1681752370848	Encapsulate field 'notes'
+1681752490180	Move compilation units
+1681752940417	Rename type 'LecturesInCourse'
+1681912742202	Delete element
+1681925974922	Delete element
+1681982577340	Rename resource 'ScoreBoard'
+1681982607061	Delete element
+1681983462487	Move compilation unit
+1682023943490	Delete element
+1682024890962	Move 'RemoveLecture.jsp' to 'WebContent'
+1682075526280	Delete element
+1682084719123	Delete element

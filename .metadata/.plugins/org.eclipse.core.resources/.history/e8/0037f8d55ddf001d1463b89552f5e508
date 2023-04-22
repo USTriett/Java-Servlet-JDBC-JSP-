@@ -1,0 +1,17 @@
+package com.model;
+
+import java.sql.Connection;
+
+import com.db.JDBCConnector;
+
+public class StudentScore {
+	private int id;
+	private float score;
+	
+	public StudentScore(int id) {
+		// TODO Auto-generated constructor stub
+		this.id = id;
+		Connection con = JDBCConnector.getJDBCConnection();
+	}
+	
+}
